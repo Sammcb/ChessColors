@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="./chesscolors.css">
+<script src="./chesscolors.js"></script>
+<title>ChessColors</title>
+<body onresize="resizeBoard()" onload="loadBoard()">
+	<h1 class="title">ChessColors</h1>
+	<div id="inputs">
+		<div class="input-group">
+			<p>Pieces</p>
+			<input id="pieceWhite" type="color" value="#ffffff" required oninput="theme()">
+			<p id="pieceWhiteColor"></p>
+			<input id="pieceBlack" type="color" value="#000000" required oninput="theme()">
+			<p id="pieceBlackColor"></p>
+		</div>
+		<div class="input-group">
+			<p>Squares</p>
+			<input id="squareWhite" type="color" value="#c0c0c0" required oninput="theme()">
+			<p id="squareWhiteColor"></p>
+			<input id="squareBlack" type="color" value="#606060" required oninput="theme()">
+			<p id="squareBlackColor"></p>
+		</div>
+	</div>
+	<div id="board-container" class="center-column">
+		<div id="board"></div>
+	</div>
+</body>
