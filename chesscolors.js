@@ -110,15 +110,13 @@ function theme() {
 	const squareLight = document.getElementById('squareLight').value
 	const squareDark = document.getElementById('squareDark').value
 
-	const url = new URL(window.location.origin)
+	const url = new URL(window.location.origin + window.location.pathname)
 	url.searchParams.append('pieceLight', pieceLight)
 	url.searchParams.append('pieceDark', pieceDark)
 	url.searchParams.append('squareLight', squareLight)
 	url.searchParams.append('squareDark', squareDark)
 	const state = {pieceLight: pieceLight, pieceDark: pieceDark, squareLight: squareLight, squareDark: squareDark}
 	window.history.pushState(state, document.title, url)
-
-
 
 	document.getElementById('board-container').style.backgroundImage = `linear-gradient(${squareLight}, ${squareDark})`
 	document.getElementById('pieceLightColor').innerHTML = pieceLight
