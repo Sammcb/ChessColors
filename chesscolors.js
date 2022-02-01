@@ -1,3 +1,5 @@
+let timeoutId = null
+
 function loadBoard() {
 	const board = document.getElementById('board')
 	const url = new URL(window.location.href)
@@ -99,6 +101,19 @@ function resizeBoard() {
 	}
 }
 
+function updateURL() {
+	const pieceLight = document.getElementById('pieceLight').value
+	const pieceDark = document.getElementById('pieceDark').value
+	const squareLight = document.getElementById('squareLight').value
+	const squareDark = document.getElementById('squareDark').value
+	const url = new URL(window.location.origin + window.location.pathname)
+	url.searchParams.append('pieceLight', pieceLight)
+	url.searchParams.append('pieceDark', pieceDark)
+	url.searchParams.append('squareLight', squareLight)
+	url.searchParams.append('squareDark', squareDark)
+	window.history.replaceState({href: window.location.href}, document.title, url)
+}
+
 function theme() {
 	const board = document.getElementById('board')
 	const lightSquares = document.getElementsByClassName('light-square')
@@ -110,13 +125,8 @@ function theme() {
 	const squareLight = document.getElementById('squareLight').value
 	const squareDark = document.getElementById('squareDark').value
 
-	const url = new URL(window.location.origin + window.location.pathname)
-	url.searchParams.append('pieceLight', pieceLight)
-	url.searchParams.append('pieceDark', pieceDark)
-	url.searchParams.append('squareLight', squareLight)
-	url.searchParams.append('squareDark', squareDark)
-	const state = {pieceLight: pieceLight, pieceDark: pieceDark, squareLight: squareLight, squareDark: squareDark}
-	window.history.pushState(state, document.title, url)
+	clearTimeout(timeoutId)
+	timeoutId = setTimeout(updateURL, 100)
 
 	document.getElementById('board-container').style.backgroundImage = `linear-gradient(${squareLight}, ${squareDark})`
 	document.getElementById('pieceLightColor').innerHTML = pieceLight
