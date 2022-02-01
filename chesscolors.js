@@ -1,63 +1,71 @@
 function loadBoard() {
 	const board = document.getElementById('board')
-	const pieceWhite = document.getElementById('pieceWhite').value
-	const pieceBlack = document.getElementById('pieceBlack').value
-	const squareWhite = document.getElementById('squareWhite').value
-	const squareBlack = document.getElementById('squareBlack').value
+	const url = new URL(window.location.href)
+	const pieceLight = url.searchParams.get('pieceLight')
+	const pieceDark = url.searchParams.get('pieceDark')
+	const squareLight = url.searchParams.get('squareLight')
+	const squareDark = url.searchParams.get('squareDark')
+
+	if (pieceLight && pieceDark && squareLight && squareDark) {
+		document.getElementById('pieceLight').value = pieceLight
+		document.getElementById('pieceDark').value = pieceDark
+		document.getElementById('squareLight').value = squareLight
+		document.getElementById('squareDark').value = squareDark
+	}
 
 	let html = ''
 
 	for (let rank = 7; rank >= 0; rank--) {
 		html += `<div class="row">`
 		for (let file = 0; file < 8; file++) {
-			const squareClass = (file + rank) % 2 === 0 ? 'black-square' : 'white-square' 
+			const squareClass = (file + rank) % 2 === 0 ? 'dark-square' : 'light-square' 
 			html += `<div class="square ${squareClass}">`
 			if (rank === 0) {
 				switch (file) {
 					case 0:
 					case 7:
-						html += `<p class="piece white-piece">&#9814;</p>`
+						html += `<p class="piece light-piece">&#9814;</p>`
 						break
 					case 1:
 					case 6:
-						html += `<p class="piece white-piece">&#9816;</p>`
+						html += `<p class="piece light-piece">&#9816;</p>`
 						break
 					case 2:
 					case 5:
-						html += `<p class="piece white-piece">&#9815;</p>`
+						html += `<p class="piece light-piece">&#9815;</p>`
 						break
 					case 3:
-						html += `<p class="piece white-piece">&#9813;</p>`
+						html += `<p class="piece light-piece">&#9813;</p>`
 						break
 					case 4:
-						html += `<p class="piece white-piece">&#9812;</p>`
+						html += `<p class="piece light-piece">&#9812;</p>`
 						break
 					default:
 						break
 				}
 			} else if (rank === 1) {
-				html += `<p class="piece white-piece">&#9817;</p>`
+				html += `<p class="piece light-piece">&#9817;</p>`
 			} else if (rank === 6) {
-				html += `<p class="piece black-piece">&#9823;</p>`
+				html += `<p class="piece dark-piece">&#9823;</p>`
 			} else if (rank === 7) {
 				switch (file) {
 					case 0:
 					case 7:
-						html += `<p class="piece black-piece">&#9820;</p>`
+						html += `<p class="piece dark-piece">&#9820;</p>`
 						break
 					case 1:
 					case 6:
-						html += `<p class="piece black-piece">&#9822;</p>`
+						html += `<p class="piece dark-piece">&#9822;</p>`
 						break
 					case 2:
 					case 5:
-						html += `<p class="piece black-piece">&#9821;</p>`
+						html += `<p class="piece dark-piece">&#9821;</p>`
 						break
 					case 3:
-						html += `<p class="piece black-piece">&#9819;</p>`
+						html += `<p class="piece dark-piece">&#9819;</p>`
 						break
 					case 4:
-						html += `<p class="piece black-piece">&#9818;</p>`
+						html += `<p class="piece dark-piece">&#9818;</p>`
 						break
 					default:
 						break
@@ -93,34 +101,44 @@ function resizeBoard() {
 
 function theme() {
 	const board = document.getElementById('board')
-	const whiteSquares = document.getElementsByClassName('white-square')
-	const whitePieces = document.getElementsByClassName('white-piece')
-	const blackSquares = document.getElementsByClassName('black-square')
-	const blackPieces = document.getElementsByClassName('black-piece')
-	const pieceWhite = document.getElementById('pieceWhite').value
-	const pieceBlack = document.getElementById('pieceBlack').value
-	const squareWhite = document.getElementById('squareWhite').value
-	const squareBlack = document.getElementById('squareBlack').value
+	const lightSquares = document.getElementsByClassName('light-square')
+	const lightPieces = document.getElementsByClassName('light-piece')
+	const darkSquares = document.getElementsByClassName('dark-square')
+	const darkPieces = document.getElementsByClassName('dark-piece')
+	const pieceLight = document.getElementById('pieceLight').value
+	const pieceDark = document.getElementById('pieceDark').value
+	const squareLight = document.getElementById('squareLight').value
+	const squareDark = document.getElementById('squareDark').value
 
-	document.getElementById('board-container').style.backgroundImage = `linear-gradient(${squareWhite}, ${squareBlack})`
-	document.getElementById('pieceWhiteColor').innerHTML = pieceWhite
-	document.getElementById('pieceBlackColor').innerHTML = pieceBlack
-	document.getElementById('squareWhiteColor').innerHTML = squareWhite
-	document.getElementById('squareBlackColor').innerHTML = squareBlack
+	const url = new URL(window.location.origin)
+	url.searchParams.append('pieceLight', pieceLight)
+	url.searchParams.append('pieceDark', pieceDark)
+	url.searchParams.append('squareLight', squareLight)
+	url.searchParams.append('squareDark', squareDark)
+	const state = {pieceLight: pieceLight, pieceDark: pieceDark, squareLight: squareLight, squareDark: squareDark}
+	window.history.pushState(state, document.title, url)
 
-	for (square of whiteSquares) {
-		square.style.backgroundColor = squareWhite
+
+
+	document.getElementById('board-container').style.backgroundImage = `linear-gradient(${squareLight}, ${squareDark})`
+	document.getElementById('pieceLightColor').innerHTML = pieceLight
+	document.getElementById('pieceDarkColor').innerHTML = pieceDark
+	document.getElementById('squareLightColor').innerHTML = squareLight
+	document.getElementById('squareDarkColor').innerHTML = squareDark
+
+	for (square of lightSquares) {
+		square.style.backgroundColor = squareLight
 	}
 
-	for (square of blackSquares) {
-		square.style.backgroundColor = squareBlack
+	for (square of darkSquares) {
+		square.style.backgroundColor = squareDark
 	}
 
-	for (piece of whitePieces) {
-		piece.style.color = pieceWhite
+	for (piece of lightPieces) {
+		piece.style.color = pieceLight
 	}
 
-	for (piece of blackPieces) {
-		piece.style.color = pieceBlack
+	for (piece of darkPieces) {
+		piece.style.color = pieceDark
 	}
 }
