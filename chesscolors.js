@@ -107,6 +107,7 @@ function updateURL() {
 	const squareLight = document.getElementById('squareLight').value
 	const squareDark = document.getElementById('squareDark').value
 	const url = new URL(window.location.origin + window.location.pathname)
+	url.searchParams.append('symbol', "")
 	url.searchParams.append('pieceLight', pieceLight)
 	url.searchParams.append('pieceDark', pieceDark)
 	url.searchParams.append('squareLight', squareLight)
