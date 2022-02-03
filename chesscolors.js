@@ -1,12 +1,18 @@
 let timeoutId = null
+var themeSymbol = ""
 
 function loadBoard() {
 	const board = document.getElementById('board')
 	const url = new URL(window.location.href)
+	const symbol = url.searchParams.get('symbol')
 	const pieceLight = url.searchParams.get('pieceLight')
 	const pieceDark = url.searchParams.get('pieceDark')
 	const squareLight = url.searchParams.get('squareLight')
 	const squareDark = url.searchParams.get('squareDark')
+
+	if (symbol) {
+		themeSymbol = symbol
+	}
 
 	if (pieceLight && pieceDark && squareLight && squareDark) {
 		document.getElementById('pieceLight').value = pieceLight
@@ -107,7 +113,7 @@ function updateURL() {
 	const squareLight = document.getElementById('squareLight').value
 	const squareDark = document.getElementById('squareDark').value
 	const url = new URL(window.location.origin + window.location.pathname)
-	url.searchParams.append('symbol', "")
+	url.searchParams.append('symbol', themeSymbol)
 	url.searchParams.append('pieceLight', pieceLight)
 	url.searchParams.append('pieceDark', pieceDark)
 	url.searchParams.append('squareLight', squareLight)
