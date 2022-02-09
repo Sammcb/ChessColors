@@ -102,8 +102,10 @@ function resizeBoard() {
 		square.style.height = `${squareWidth}px`
 	}
 
+	const pieceSize = `${Math.floor(100 * squareWidth / 159)}px`
+
 	for (piece of pieces) {
-		piece.style.fontSize = `${Math.floor(100 * squareWidth / 159)}px`
+		piece.style.fontSize = pieceSize
 	}
 }
 
