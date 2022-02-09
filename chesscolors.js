@@ -96,14 +96,12 @@ function resizeBoard() {
 	const pieces = document.getElementsByClassName('piece')
 
 	const squareWidth = Math.floor(board.offsetWidth / 8)
-
 	for (square of squares) {
 		square.style.width = `${squareWidth}px`
 		square.style.height = `${squareWidth}px`
 	}
 
 	const pieceSize = `${Math.floor(100 * squareWidth / 159)}px`
-
 	for (piece of pieces) {
 		piece.style.fontSize = pieceSize
 	}
