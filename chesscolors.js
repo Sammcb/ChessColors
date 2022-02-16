@@ -15,10 +15,10 @@ function loadBoard() {
 	}
 
 	if (pieceLight && pieceDark && squareLight && squareDark) {
-		document.getElementById('pieceLight').value = pieceLight
-		document.getElementById('pieceDark').value = pieceDark
-		document.getElementById('squareLight').value = squareLight
-		document.getElementById('squareDark').value = squareDark
+		document.getElementById('pieceLight').value = `#${pieceLight}`
+		document.getElementById('pieceDark').value = `#${pieceDark}`
+		document.getElementById('squareLight').value = `#${squareLight}`
+		document.getElementById('squareDark').value = `#${squareDark}`
 	}
 
 	let html = ''
@@ -108,10 +108,10 @@ function resizeBoard() {
 }
 
 function updateURL() {
-	const pieceLight = document.getElementById('pieceLight').value
-	const pieceDark = document.getElementById('pieceDark').value
-	const squareLight = document.getElementById('squareLight').value
-	const squareDark = document.getElementById('squareDark').value
+	const pieceLight = document.getElementById('pieceLight').value.slice(1)
+	const pieceDark = document.getElementById('pieceDark').value.slice(1)
+	const squareLight = document.getElementById('squareLight').value.slice(1)
+	const squareDark = document.getElementById('squareDark').value.slice(1)
 	const url = new URL(window.location.origin + window.location.pathname)
 	url.searchParams.append('symbol', themeSymbol)
 	url.searchParams.append('pieceLight', pieceLight)
