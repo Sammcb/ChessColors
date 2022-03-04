@@ -24,7 +24,7 @@ function loadBoard() {
 	let html = ''
 
 	for (let rank = 7; rank >= 0; rank--) {
-		html += `<div class="row">`
+		html += '<div class="row">'
 		for (let file = 0; file < 8; file++) {
 			const squareClass = (file + rank) % 2 === 0 ? 'dark-square' : 'light-square' 
 			html += `<div class="square ${squareClass}">`
@@ -32,56 +32,56 @@ function loadBoard() {
 				switch (file) {
 					case 0:
 					case 7:
-						html += `<p class="piece light-piece">&#9814;</p>`
+						html += '<p class="piece light-piece">&#9814;</p>'
 						break
 					case 1:
 					case 6:
-						html += `<p class="piece light-piece">&#9816;</p>`
+						html += '<p class="piece light-piece">&#9816;</p>'
 						break
 					case 2:
 					case 5:
-						html += `<p class="piece light-piece">&#9815;</p>`
+						html += '<p class="piece light-piece">&#9815;</p>'
 						break
 					case 3:
-						html += `<p class="piece light-piece">&#9813;</p>`
+						html += '<p class="piece light-piece">&#9813;</p>'
 						break
 					case 4:
-						html += `<p class="piece light-piece">&#9812;</p>`
+						html += '<p class="piece light-piece">&#9812;</p>'
 						break
 					default:
 						break
 				}
 			} else if (rank === 1) {
-				html += `<p class="piece light-piece">&#9817;</p>`
+				html += '<p class="piece light-piece">&#9817;</p>'
 			} else if (rank === 6) {
-				html += `<p class="piece dark-piece">&#9823;</p>`
+				html += '<p class="piece dark-piece">&#9823;</p>'
 			} else if (rank === 7) {
 				switch (file) {
 					case 0:
 					case 7:
-						html += `<p class="piece dark-piece">&#9820;</p>`
+						html += '<p class="piece dark-piece">&#9820;</p>'
 						break
 					case 1:
 					case 6:
-						html += `<p class="piece dark-piece">&#9822;</p>`
+						html += '<p class="piece dark-piece">&#9822;</p>'
 						break
 					case 2:
 					case 5:
-						html += `<p class="piece dark-piece">&#9821;</p>`
+						html += '<p class="piece dark-piece">&#9821;</p>'
 						break
 					case 3:
-						html += `<p class="piece dark-piece">&#9819;</p>`
+						html += '<p class="piece dark-piece">&#9819;</p>'
 						break
 					case 4:
-						html += `<p class="piece dark-piece">&#9818;</p>`
+						html += '<p class="piece dark-piece">&#9818;</p>'
 						break
 					default:
 						break
 				}
 			}
-			html += `</div>`
+			html += '</div>'
 		}
-		html += `</div>`
+		html += '</div>'
 	}
 
 	board.innerHTML = html
